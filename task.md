@@ -22,3 +22,8 @@
   - [x] Run `git commit` privacy check verification
   - [x] Build and package installer `.exe` / `.dmg` (ZIP package completed and released)
   - [x] Push code to GitHub repository `https://github.com/Master-MD/NALA-CV-tUNer-career-ops`
+- [x] Multilingual Swiss Set Expansion
+  - [x] Add French (FR) and Italian (IT) to UI locales in `index.html`
+  - [x] Update `setup-all.mjs` installer with dynamic language switcher (EN, DE, FR, IT)
+  - [x] Translate and add FR/IT sections to `README.md` and `HOW_TO_GUIDE.md`
+  - [x] Rebuild zip package and upload updated asset to GitHub Releases v1.8.1

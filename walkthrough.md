@@ -27,13 +27,18 @@ We have successfully built, packaged, and deployed **NALA Career-Ops Desktop** (
 *   **[PhotoTuner.tsx](src/components/PhotoTuner.tsx):** Interface for local ComfyUI API to generate professional corporate portraits.
 *   **[ModelManager.tsx](src/components/ModelManager.tsx):** Interface to input Hugging Face tokens and pull Ollama models (such as `gemma2:2b`, `gemma2:9b`, or `gemma:12b`) with streaming layer download percentages.
 
+### 5. Full Swiss Multilingual Expansion (v1.8.2)
+*   **[index.html](index.html):** Refactored UI locales object with complete translation dictionaries for English, German, French, and Italian (the full Swiss language set). Auto-detects language and translates UI elements and interactive feedback logs (ATS matching and HR simulation).
+*   **[setup-all.mjs](setup-all.mjs):** Upgraded installer console outputs to support EN, DE, FR, IT dynamically based on CLI flags (`--lang=xx`) and the system environment variable (`LANG`).
+*   **[README.md](README.md) & [HOW_TO_GUIDE.md](HOW_TO_GUIDE.md):** Added full French and Italian sections containing user setup guides, step-by-step instructions, and FAQs.
+
 ---
 
 ## 🧪 Verification & Deployment Results
 
-1.  **Onboarding Auto-Setup Run:** Verified by executing `npm run setup` locally. All mock templates were successfully provisioned and the `.env` settings were generated.
+1.  **Onboarding Auto-Setup Run:** Verified by executing `npm run setup` locally. All mock templates were successfully provisioned and the `.env` settings were generated. Supports CLI language switches.
 2.  **Privacy Hook Verification:** Tested with staged files containing personal names and paths. The pre-commit hook successfully blocked the commit until all sensitive files were sanitized.
 3.  **GitHub Release & ZIP Package:** Staged changes were committed and pushed to `main`. Built a clean, lightweight zip package `NALA-CV-tUNer-career-ops-v1.8.1.zip` (excluding `node_modules` and git details). The package was uploaded as a release asset using GitHub CLI.
 
-*   **GitHub Commit:** [main](https://github.com/Master-MD/NALA-CV-tUNer-career-ops/commit/5e098c3)
+*   **GitHub Commit:** [main](https://github.com/Master-MD/NALA-CV-tUNer-career-ops/commit/53cc33b)
 *   **Download ZIP Package:** [v1.8.1 Release Page](https://github.com/Master-MD/NALA-CV-tUNer-career-ops/releases/tag/v1.8.1)
