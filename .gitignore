@@ -48,3 +48,8 @@ bun.lock
 .claude/memory/
 career-dashboard
 package-lock.json
+
+# Packaging
+*.zip
+dist/
+release/

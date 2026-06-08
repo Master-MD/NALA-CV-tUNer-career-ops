@@ -1,0 +1,24 @@
+# Task List: NALA Career-Ops Desktop
+
+- [x] Initialize repository setup files
+  - [x] Create `setup-all.mjs` (Installer & Auto-Detection script)
+  - [x] Create `scripts/privacy-check.mjs` (Pre-commit gate)
+  - [x] Set up `.git/hooks/pre-commit` script
+  - [x] Add scripts to `package.json`
+- [x] Build Client-Side Hardware Scanner
+  - [x] Create `src/services/hardwareScanner.ts` (RAM, OS, CPU, Port Scan)
+- [x] Build ADHD-Friendly Fluent UI & Theme Switcher
+  - [x] Create `src/App.tsx` (ADHD grid, dark/light/urgency-red theme state)
+  - [x] Create `src/index.css` (Acrylic, glassmorphism, pulse-red urgencies, layout animations)
+- [x] Build Setup Wizard & Model Manager Components
+  - [x] Create `src/components/SetupWizard.tsx` (Scan permissions, download guides, Gemma models)
+  - [x] Create `src/components/ModelManager.tsx` (Hugging Face API key, pull progress, LLM memory guard)
+- [x] Build Application Workspace Components
+  - [x] Create `src/components/InboxZone.tsx` (Central drag-and-drop zone)
+  - [x] Create `src/components/CvTuner.tsx` (Generic baseline optimizer, templates grid)
+  - [x] Create `src/components/PhotoTuner.tsx` (ComfyUI picture tuner helper)
+- [ ] Verification and Deployment
+  - [ ] Verify `npm run setup` copies mock files and links hooks
+  - [ ] Run `git commit` privacy check verification
+  - [ ] Build and package installer `.exe` / `.dmg`
+  - [ ] Push code to GitHub repository `https://github.com/Master-MD/NALA-CV-tUNer-career-ops`
