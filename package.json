@@ -1,8 +1,12 @@
 {
   "name": "career-ops",
   "version": "1.8.1",
+  "main": "main.js",
   "description": "AI-powered job search pipeline built on Claude Code",
   "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "build": "electron-builder",
     "doctor": "node doctor.mjs",
     "verify": "node verify-pipeline.mjs",
     "normalize": "node normalize-statuses.mjs",
@@ -41,5 +45,9 @@
     "dotenv": "^17.0.0",
     "js-yaml": "^4.1.1",
     "playwright": "^1.58.1"
+  },
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.0"
   }
 }

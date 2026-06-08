@@ -17,8 +17,8 @@
   - [x] Create `src/components/InboxZone.tsx` (Central drag-and-drop zone)
   - [x] Create `src/components/CvTuner.tsx` (Generic baseline optimizer, templates grid)
   - [x] Create `src/components/PhotoTuner.tsx` (ComfyUI picture tuner helper)
-- [ ] Verification and Deployment
-  - [ ] Verify `npm run setup` copies mock files and links hooks
-  - [ ] Run `git commit` privacy check verification
-  - [ ] Build and package installer `.exe` / `.dmg`
-  - [ ] Push code to GitHub repository `https://github.com/Master-MD/NALA-CV-tUNer-career-ops`
+- [x] Verification and Deployment
+  - [x] Verify `npm run setup` copies mock files and links hooks
+  - [x] Run `git commit` privacy check verification
+  - [x] Build and package installer `.exe` / `.dmg` (ZIP package completed and released)
+  - [x] Push code to GitHub repository `https://github.com/Master-MD/NALA-CV-tUNer-career-ops`
