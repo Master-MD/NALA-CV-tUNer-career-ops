@@ -1,6 +1,6 @@
 # NALA Career-Ops Desktop: How-To Guide / Bedienungsanleitung
 
-> **Language / Sprache:** [Deutsch](#deutsch-bedienungsanleitung) | [English](#english-user-guide)
+> **Language / Sprache / Langue / Lingua:** [English](#english-user-guide) | [Deutsch](#deutsch-bedienungsanleitung) | [Français](#français-guide-de-lutilisateur) | [Italiano](#italiano-guida-alluso)
 
 ---
 
@@ -160,3 +160,143 @@ Open the application and click the **Gear Icon (Settings)** at the bottom left:
 ### 6. Backing Up and Exporting Data
 - **Full Backup:** Click **"Export All Data"** in Settings to save all documents, applications, and MemPalace memories into a secure `.zip` file.
 - **Single Job Export:** Export a specific job application package including the tailored resume, cover letter, and scoring reports.
+
+---
+---
+
+## Français: Guide de l'utilisateur
+
+Ce guide explique étape par étape comment installer, configurer et utiliser l'application NALA Career-Ops Desktop.
+
+### 🗺️ Flux de documents
+
+*Veuillez vous référer au diagramme Mermaid dans la section Deutsch ci-dessus pour une représentation visuelle de la façon dont vos documents transitent par le système.*
+
+---
+
+### 1. Installation par double-clic sur Windows
+1. Téléchargez le fichier `NALA-Career-Ops-Setup.exe` depuis la page des GitHub Releases.
+2. Double-cliquez sur le fichier téléchargé.
+3. L'assistant d'installation s'ouvre et installe automatiquement l'application sous `%LOCALAPPDATA%/Programs/Nala-Career-Ops`.
+4. Une fois l'installation terminée, une icône de bureau nommée **NALA Career-Ops** apparaît. Double-cliquez dessus pour lancer l'application.
+
+---
+
+### 2. Configuration des modèles d'IA (locaux et cloud)
+Ouvrez l'application et cliquez sur l'**icône d'engrenage (Paramètres)** en bas à gauche :
+
+#### A) Modèles locaux (Ollama / LM Studio)
+- Assurez-vous que **Ollama** fonctionne sur votre ordinateur (application Ollama active en arrière-plan).
+- Cliquez sur **"Rechercher des modèles locaux"**. L'application scanne le port `11434` et récupère vos modèles installés (par exemple, `qwen3:32b`, `llama3`).
+- Sélectionnez votre modèle par défaut préféré.
+
+#### B) Modèles cloud (Gemini / OpenAI)
+- Saisissez votre clé API dans le champ correspondant (par exemple, `Clé API Gemini`).
+- Vos clés sont enregistrées de manière sécurisée dans votre fichier de configuration local.
+
+---
+
+### 3. Utilisation de l'Inbox Glisser-Déposer
+1. Naviguez vers l'onglet **Inbox** dans la barre latérale gauche.
+2. Glissez-déposez vos documents de candidature dans la zone de dépôt indiquée :
+   - CV actuel (`cv_2026.pdf`)
+   - Certificats de travail (`certificat_travail_entreprise_a.docx`)
+   - Diplômes et certifications (`certificat_cloud.pdf`)
+3. L'application analyse les fichiers en arrière-plan avec **Docling** et enregistre le contenu extrait dans votre **base de données locale MemPalace**.
+4. Les fichiers sont automatiquement étiquetés (par exemple, `#cv`, `#certificat`).
+
+---
+
+### 4. Lancement de l'Optimisation de CV & de la Simulation RH
+1. Allez sur l'onglet **CV-Tuner**.
+2. Collez le texte ou collez l'URL de l'offre d'emploi ciblée.
+3. Sélectionnez votre CV dans la liste des documents importés.
+4. Cliquez sur **"Démarrer l'optimisation & la simulation"** :
+   - L'**ATS Matcher** évalue la pertinence de votre profil (Score de A à F).
+   - L'**équipe de débat RH** simule les commentaires d'un recruteur, d'un responsable du recrutement et d'un scanner ATS.
+5. Examinez les modifications proposées côte à côte et appliquez-les d'un simple clic.
+
+---
+
+### 5. Génération d'un Spicilège Téléphonique (Cheat Sheet)
+1. Après l'optimisation, allez dans la section **Interview Coach** et cliquez sur **"Générer le spicilège téléphonique"**.
+2. Cela crée une fiche d'information compacte à imprimer ou à consulter sur votre téléphone :
+   - **Exemples STAR :** Réponses directes pour les questions difficiles (Situation, Tâche, Action, Résultat).
+   - **Points de discussion (TALK) :** Vos 3 meilleures réalisations alignées avec le rôle.
+   - **Questions intelligentes :** Questions pertinentes à poser à l'interviewer.
+
+---
+
+### 6. Sauvegarde et Exportation des données
+- **Sauvegarde complète :** Cliquez sur **"Exporter toutes les données"** dans les Paramètres pour enregistrer tous les documents, candidatures et souvenirs MemPalace dans un fichier `.zip` sécurisé.
+- **Exportation d'une candidature unique :** Exportez un dossier de candidature spécifique comprenant le CV personnalisé, la lettre de motivation et les rapports d'évaluation.
+
+---
+---
+
+## Italiano: Guida all'uso
+
+Questa guida spiega passo dopo passo come installare, configurare e utilizzare l'applicazione NALA Career-Ops Desktop.
+
+### 🗺️ Flusso dei documenti
+
+*Si prega di fare riferimento al diagramma Mermaid nella sezione Deutsch sopra per una rappresentazione visiva di come i vostri documenti transitano attraverso il sistema.*
+
+---
+
+### 1. Installazione con doppio clic su Windows
+1. Scaricare il file `NALA-Career-Ops-Setup.exe` dalla pagina delle GitHub Releases.
+2. Fare doppio clic sul file scaricato.
+3. L'installatore si aprirà e installerà automaticamente l'applicazione in `%LOCALAPPDATA%/Programs/Nala-Career-Ops`.
+4. Al termine dell'operazione, apparirà un'icona sul desktop chiamata **NALA Career-Ops**. Fare doppio clic su di essa per avviare l'applicazione.
+
+---
+
+### 2. Configurazione dei modelli IA (locali e cloud)
+Aprire l'applicazione e fare clic sull'**icona dell'ingranaggio (Impostazioni)** in basso a sinistra:
+
+#### A) Modelli locali (Ollama / LM Studio)
+- Assicurarsi che **Ollama** sia in esecuzione sul computer (applicazione Ollama attiva in background).
+- Fare clic su **"Scansiona modelli locali"**. L'applicazione scansionerà la porta `11434` e recupererà i modelli installati (ad esempio, `qwen3:32b`, `llama3`).
+- Selezionare il modello predefinito preferito.
+
+#### B) Modelle cloud (Gemini / OpenAI)
+- Inserire la propria chiave API nel campo designato (ad esempio, `Chiave API Gemini`).
+- Le chiavi vengono salvate in modo sicuro nel file di configurazione locale.
+
+---
+
+### 3. Utilizzo della Inbox Drag-and-Drop
+1. Navigare alla scheda **Inbox** nella barra laterale sinistra.
+2. Trascinare e rilasciare i documenti di candidatura nella zona indicata:
+   - CV attuale (`cv_2026.pdf`)
+   - Certificati di lavoro (`certificato_lavoro_azienda_a.docx`)
+   - Diplomi e certificazioni (`certificazione_cloud.pdf`)
+3. L'applicazione analizza i file in background con **Docling** e memorizza il contenuto estratto nel vostro **database locale MemPalace**.
+4. I file vengono taggati automaticamente (ad esempio, `#cv`, `#certificato`).
+
+---
+
+### 4. Avvio dell'Ottimizzazione del CV & della Simulazione Risorse Umane
+1. Andare alla scheda **CV-Tuner**.
+2. Incollare il testo o l'URL dell'offerta di lavoro ciblata.
+3. Selezionare il proprio curriculum dall'elenco dei documenti importati.
+4. Fare clic su **"Avvia ottimizzazione & simulazione"**:
+   - L'**ATS Matcher** valuta la rilevanza del vostro profilo (punteggio da A a F).
+   - Il **team di dibattito delle Risorse Umane** simula i commenti di un selezionatore, di un responsabile delle assunzioni e di uno scanner ATS.
+5. Esaminare le modifiche proposte affiancate e applicarle con un solo clic.
+
+---
+
+### 5. Generazione di un Foglietto di Aiuto Telefonico (Cheat Sheet)
+1. Dopo l'ottimizzazione, andare alla sezione **Interview Coach** e fare clic su **"Genera foglietto di aiuto"**.
+2. Questo crea una scheda informativa compatta da stampare o visualizzare sul proprio smartphone:
+   - **Esempi STAR:** Risposte dirette per domande difficili (Situazione, Compito, Azione, Risultato).
+   - **Punti di discussione (TALK):** I vostri 3 migliori successi allineati con il ruolo.
+   - **Domande intelligenti:** Domande intelligenti da porre all'intervistatore.
+
+---
+
+### 6. Backup ed Esportazione dei dati
+- **Backup completo:** Fare clic su **"Esporta tutti i dati"** nelle Impostazioni per salvare tutti i documenti, le candidature e i ricordi di MemPalace in un file `.zip` sicuro.
+- **Esportazione di una singola candidatura:** Esportare un pacchetto di candidatura specifico comprendente il CV personalizzato, la lettera di presentazione e i rapporti di valutazione.

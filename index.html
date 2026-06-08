@@ -6,7 +6,6 @@
   <title>NALA Career-Ops Desktop</title>
   <link rel="stylesheet" href="src/index.css">
   <style>
-    /* Inline additions for self-contained layout */
     .flex { display: flex; }
     .flex-col { flex-direction: column; }
     .gap-2 { gap: 8px; }
@@ -16,7 +15,6 @@
     .w-full { width: 100%; }
     .h-full { height: 100%; }
     
-    /* Wizard Modal Overlay */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -52,29 +50,40 @@
       <div>
         <div class="flex items-center gap-2" style="margin-bottom: 32px;">
           <span class="pulse-badge"></span>
-          <h2 style="font-size: 18px; font-weight: bold; letter-spacing: 0.5px;">NALA CV-Tuner</h2>
+          <h2 style="font-size: 18px; font-weight: bold; letter-spacing: 0.5px;" data-i18n="app_title">NALA CV-Tuner</h2>
         </div>
         
         <nav style="display: flex; flex-direction: column; gap: 8px;">
-          <button class="btn w-full" id="btnTuner" onclick="switchTab('tuner')">🎯 Workspace / Tuner</button>
-          <button class="btn btn-secondary w-full" id="btnInbox" onclick="switchTab('inbox')">📥 Paperless Inbox</button>
-          <button class="btn btn-secondary w-full" id="btnPhoto" onclick="switchTab('photo')">🖼️ Photo Assistant</button>
-          <button class="btn btn-secondary w-full" id="btnModels" onclick="switchTab('models')">🤖 LLM Model Manager</button>
+          <button class="btn w-full" id="btnTuner" onclick="switchTab('tuner')" data-i18n="nav_tuner">🎯 Workspace / Tuner</button>
+          <button class="btn btn-secondary w-full" id="btnInbox" onclick="switchTab('inbox')" data-i18n="nav_inbox">📥 Paperless Inbox</button>
+          <button class="btn btn-secondary w-full" id="btnPhoto" onclick="switchTab('photo')" data-i18n="nav_photo">🖼️ Photo Assistant</button>
+          <button class="btn btn-secondary w-full" id="btnModels" onclick="switchTab('models')" data-i18n="nav_models">🤖 LLM Model Manager</button>
         </nav>
       </div>
 
       <div style="display: flex; flex-direction: column; gap: 16px;">
+        <!-- Language Switcher -->
+        <div class="flex-col" style="gap: 6px;">
+          <label style="font-size: 11px; color: var(--text-secondary);" data-i18n="nav_lang">Language / Sprache</label>
+          <select id="langSelector" onchange="changeLanguage(this.value)" style="padding: 6px; font-size: 12px;">
+            <option value="en">English (EN)</option>
+            <option value="de">Deutsch (DE)</option>
+            <option value="fr">Français (FR)</option>
+            <option value="it">Italiano (IT)</option>
+          </select>
+        </div>
+
         <!-- ADHD Mode -->
         <div class="flex items-center justify-between" style="gap: 8px;">
-          <label style="font-size: 12px; color: var(--text-secondary);">ADHD Focus Mode</label>
+          <label style="font-size: 11px; color: var(--text-secondary);" data-i18n="nav_adhd">ADHD Focus Mode</label>
           <input type="checkbox" id="chkAdhd" checked onchange="toggleAdhd(this.checked)" style="width: 20px; height: 20px; cursor: pointer;">
         </div>
 
         <!-- Themes -->
         <div class="flex" style="gap: 4px;">
-          <button class="btn btn-secondary" style="flex: 1; padding: 4px; font-size: 11px;" onclick="setTheme('light')">☀️ Light</button>
-          <button class="btn btn-secondary" style="flex: 1; padding: 4px; font-size: 11px;" onclick="setTheme('dark')">🌙 Dark</button>
-          <button class="btn btn-secondary" style="flex: 1; padding: 4px; font-size: 11px; color: var(--warning-red); border-color: var(--warning-red);" onclick="setTheme('urgency-red')">🚨 Alert</button>
+          <button class="btn btn-secondary" style="flex: 1; padding: 4px; font-size: 11px;" onclick="setTheme('light')" data-i18n="theme_light">☀️ Light</button>
+          <button class="btn btn-secondary" style="flex: 1; padding: 4px; font-size: 11px;" onclick="setTheme('dark')" data-i18n="theme_dark">🌙 Dark</button>
+          <button class="btn btn-secondary" style="flex: 1; padding: 4px; font-size: 11px; color: var(--warning-red); border-color: var(--warning-red);" onclick="setTheme('urgency-red')" data-i18n="theme_alert">🚨 Alert</button>
         </div>
 
         <div style="font-size: 10px; color: var(--text-muted); text-align: center;">
@@ -90,40 +99,40 @@
       <div id="tabTuner" class="tab-content">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
           <div>
-            <h1 style="font-size: 24px; font-weight: bold;">🎯 Career-Ops Workspace</h1>
-            <p style="color: var(--text-secondary); font-size: 13px;">Optimize your CV and analyze job descriptions side-by-side.</p>
+            <h1 style="font-size: 24px; font-weight: bold;" data-i18n="tuner_header">🎯 Career-Ops Workspace</h1>
+            <p style="color: var(--text-secondary); font-size: 13px;" data-i18n="tuner_sub">Optimize your CV and analyze job descriptions side-by-side.</p>
           </div>
           <div class="flex" style="gap: 8px;">
             <select id="cvTemplate" style="width: 160px;">
-              <option value="Tech-Dense">Tech-Dense Template</option>
-              <option value="Classic">Classic Template</option>
-              <option value="Minimal">Minimal Template</option>
-              <option value="Modern">Modern Template</option>
+              <option value="Tech-Dense" data-i18n="tpl_dense">Tech-Dense Template</option>
+              <option value="Classic" data-i18n="tpl_classic">Classic Template</option>
+              <option value="Minimal" data-i18n="tpl_minimal">Minimal Template</option>
+              <option value="Modern" data-i18n="tpl_modern">Modern Template</option>
             </select>
-            <button class="btn btn-secondary" onclick="setLayout('classic')">📋 Full</button>
-            <button class="btn btn-secondary" onclick="setLayout('split')">⚖️ Split</button>
-            <button class="btn btn-secondary" onclick="setLayout('dense')">📊 Report</button>
+            <button class="btn btn-secondary" onclick="setLayout('classic')" data-i18n="layout_full">📋 Full</button>
+            <button class="btn btn-secondary" onclick="setLayout('split')" data-i18n="layout_split">⚖️ Split</button>
+            <button class="btn btn-secondary" onclick="setLayout('dense')" data-i18n="layout_report">📊 Report</button>
           </div>
         </div>
 
         <div class="cv-grid cv-grid-split" id="cvGrid">
           <div class="glass-card flex flex-col" style="height: 520px;">
             <div class="flex justify-between items-center" style="margin-bottom: 12px;">
-              <h3 style="font-size: 16px;">📝 Curriculum Vitae (Markdown)</h3>
-              <button class="btn btn-secondary" style="padding: 4px 12px; font-size: 12px;" onclick="triggerBaseline()">⚡ Generic Baseline CV</button>
+              <h3 style="font-size: 16px;" data-i18n="cv_pane_title">📝 Curriculum Vitae (Markdown)</h3>
+              <button class="btn btn-secondary" style="padding: 4px 12px; font-size: 12px;" onclick="triggerBaseline()" data-i18n="btn_baseline">⚡ Generic Baseline CV</button>
             </div>
             <textarea id="cvText" style="flex: 1; resize: none; font-family: var(--font-mono); font-size: 13px;" placeholder="Writing sample..."></textarea>
           </div>
 
           <div class="glass-card flex flex-col" style="height: 520px;" id="jdPane">
-            <h3 style="font-size: 16px; margin-bottom: 12px;">💼 Target Job Listing (Paste JD or URL)</h3>
+            <h3 style="font-size: 16px; margin-bottom: 12px;" data-i18n="jd_pane_title">💼 Target Job Listing (Paste JD or URL)</h3>
             <textarea id="jdText" placeholder="Paste job details or links here..." style="flex: 1; resize: none; margin-bottom: 16px; font-size: 13px;"></textarea>
-            <button class="btn" onclick="triggerOptimize()">🧬 Optimize CV for this Job</button>
+            <button class="btn" onclick="triggerOptimize()" style="width: 100%;" data-i18n="btn_optimize">🧬 Optimize CV for this Job</button>
           </div>
           
           <div class="glass-card" style="height: 520px; overflow-y: auto; display: none;" id="reportPane">
-            <h3 style="font-size: 16px; margin-bottom: 12px;">📊 Analysis & HR Feedback</h3>
-            <div id="reportText" style="font-size: 13px; line-height: 1.6; color: var(--text-secondary); whiteSpace: pre-wrap;">
+            <h3 style="font-size: 16px; margin-bottom: 12px;" data-i18n="report_pane_title">📊 Analysis & HR Feedback</h3>
+            <div id="reportText" style="font-size: 13px; line-height: 1.6; color: var(--text-secondary); white-space: pre-wrap;" data-i18n="report_default">
               Run the CV optimization to trigger the HR Debate swarm feedback.
             </div>
           </div>
@@ -133,19 +142,19 @@
       <!-- 2. Inbox Tab -->
       <div id="tabInbox" class="tab-content" style="display: none;">
         <div class="glass-card">
-          <h2 style="margin-bottom: 16px;">Inbox & Documents</h2>
-          <p style="color: var(--text-secondary); margin-bottom: 24px; font-size: 14px;">
+          <h2 style="margin-bottom: 16px;" data-i18n="inbox_header">Inbox & Documents</h2>
+          <p style="color: var(--text-secondary); margin-bottom: 24px; font-size: 14px;" data-i18n="inbox_sub">
             Drag and drop files to categorize and save them to the local MemPalace database.
           </p>
           <div class="drop-zone" id="dropZone" ondragover="event.preventDefault(); this.classList.add('active');" ondragleave="this.classList.remove('active');" ondrop="handleFileDrop(event)">
             <span style="font-size: 32px; margin-bottom: 12px;">📥</span>
-            <h3 style="font-size: 16px; margin-bottom: 4px;">Drag & Drop your documents here</h3>
-            <p style="color: var(--text-secondary); font-size: 13px;">
+            <h3 style="font-size: 16px; margin-bottom: 4px;" data-i18n="inbox_drop">Drag & Drop your documents here</h3>
+            <p style="color: var(--text-secondary); font-size: 13px;" data-i18n="inbox_drop_sub">
               Supports PDF, DOCX, TXT, HTML, RTF, and EML (processed securely via local Docling engine)
             </p>
           </div>
           <div style="margin-top: 24px;">
-            <h3 style="font-size: 15px; margin-bottom: 12px; color: var(--text-secondary);">Parsed Documents</h3>
+            <h3 style="font-size: 15px; margin-bottom: 12px; color: var(--text-secondary);" data-i18n="inbox_list_title">Parsed Documents</h3>
             <div id="fileList" style="display: flex; flex-direction: column; gap: 8px;">
               <!-- File rows loaded dynamically -->
             </div>
@@ -156,8 +165,8 @@
       <!-- 3. Photo Tab -->
       <div id="tabPhoto" class="tab-content" style="display: none;">
         <div class="glass-card">
-          <h2 style="margin-bottom: 16px;">🖼️ AI Profile Photo Tuner</h2>
-          <p style="color: var(--text-secondary); margin-bottom: 24px; font-size: 14px;">
+          <h2 style="margin-bottom: 16px;" data-i18n="photo_header">🖼️ AI Profile Photo Tuner</h2>
+          <p style="color: var(--text-secondary); margin-bottom: 24px; font-size: 14px;" data-i18n="photo_sub">
             Optimize your portrait using ComfyUI workflows for a polished, professional profile image.
           </p>
           <div class="flex" style="gap: 32px;">
@@ -165,17 +174,17 @@
               <div id="photoPreviewContainer" style="border: 1px solid var(--border-color); border-radius: 12px; height: 280px; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; background: var(--bg-input); position: relative;">
                 <div style="text-align: center; padding: 20px;" id="noPhotoText">
                   <span style="font-size: 48px; display: block; margin-bottom: 12px;">👤</span>
-                  <span style="font-size: 14px; color: var(--text-secondary);">No photo loaded</span>
+                  <span style="font-size: 14px; color: var(--text-secondary);" data-i18n="photo_none">No photo loaded</span>
                 </div>
                 <img id="photoImg" style="width: 100%; height: 100%; object-fit: cover; display: none;" alt="Preview">
                 <div id="comfyOverlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); display: none; flex-direction: column; align-items: center; justify-content: center;">
                   <span class="pulse-badge" style="width: 20px; height: 20px; margin-bottom: 12px;"></span>
-                  <span style="font-size: 13px; color: white;">Running ComfyUI workflow...</span>
+                  <span style="font-size: 13px; color: white;" data-i18n="photo_running">Running ComfyUI workflow...</span>
                 </div>
               </div>
               <div style="margin-top: 16px;">
                 <input type="file" accept="image/*" id="uploadPortraitInput" style="display: none;" onchange="loadPortrait(this)">
-                <label htmlFor="uploadPortraitInput" onclick="document.getElementById('uploadPortraitInput').click()" class="btn btn-secondary" style="display: inline-block; cursor: pointer; text-align: center; width: 100%;">
+                <label htmlFor="uploadPortraitInput" onclick="document.getElementById('uploadPortraitInput').click()" class="btn btn-secondary" style="display: inline-block; cursor: pointer; text-align: center; width: 100%;" data-i18n="photo_btn_upload">
                   📷 Upload Selfie / Portrait
                 </label>
               </div>
@@ -187,19 +196,19 @@
                   <input type="text" id="comfyHost" value="http://localhost:8188">
                 </div>
                 <div>
-                  <label style="font-size: 12px; color: var(--text-secondary); display: block; margin-bottom: 6px;">Style Template</label>
+                  <label style="font-size: 12px; color: var(--text-secondary); display: block; margin-bottom: 6px;" data-i18n="photo_style">Style Template</label>
                   <select id="comfyStyle">
-                    <option value="tech-founder">Tech Founder (Dynamic light, warm colors)</option>
-                    <option value="corporate-navy">Corporate Navy (Clean background, cool light)</option>
-                    <option value="minimalist-gray">Studio Gray (Soft shadow, black suit)</option>
+                    <option value="tech-founder" data-i18n="photo_style_founder">Tech Founder (Dynamic light, warm colors)</option>
+                    <option value="corporate-navy" data-i18n="photo_style_corp">Corporate Navy (Clean background, cool light)</option>
+                    <option value="minimalist-gray" data-i18n="photo_style_gray">Studio Gray (Soft shadow, black suit)</option>
                   </select>
                 </div>
                 <div class="flex items-center" style="gap: 8px;">
                   <input type="checkbox" id="chkBgRemoval" checked style="width: 18px; height: 18px;">
-                  <label for="chkBgRemoval" style="font-size: 13px; color: var(--text-secondary); cursor: pointer;">Remove and replace background</label>
+                  <label for="chkBgRemoval" style="font-size: 13px; color: var(--text-secondary); cursor: pointer;" data-i18n="photo_bg_replace">Remove and replace background</label>
                 </div>
               </div>
-              <button class="btn" style="width: 100%;" onclick="runComfyPhoto()">✨ Run Optimization</button>
+              <button class="btn" style="width: 100%;" onclick="runComfyPhoto()" data-i18n="photo_btn_run">✨ Run Optimization</button>
             </div>
           </div>
         </div>
@@ -208,23 +217,23 @@
       <!-- 4. Models Tab -->
       <div id="tabModels" class="tab-content" style="display: none;">
         <div class="glass-card">
-          <h2 style="margin-bottom: 16px;">🤗 Hugging Face Integration</h2>
-          <p style="color: var(--text-secondary); margin-bottom: 20px; font-size: 14px;">
+          <h2 style="margin-bottom: 16px;" data-i18n="hf_header">🤗 Hugging Face Integration</h2>
+          <p style="color: var(--text-secondary); margin-bottom: 20px; font-size: 14px;" data-i18n="hf_sub">
             Connect your Hugging Face account to download gated models directly.
           </p>
           <div class="flex" style="gap: 12px; align-items: flex-end;">
             <div style="flex: 1;">
-              <label style="font-size: 12px; color: var(--text-secondary); display: block; margin-bottom: 6px;">Hugging Face Token</label>
+              <label style="font-size: 12px; color: var(--text-secondary); display: block; margin-bottom: 6px;" data-i18n="hf_token_lbl">Hugging Face Token</label>
               <input type="password" id="txtHfToken" placeholder="hf_..." value="">
             </div>
-            <button class="btn" onclick="saveHfToken()">Save Key</button>
+            <button class="btn" onclick="saveHfToken()" data-i18n="hf_btn_save">Save Key</button>
           </div>
         </div>
 
         <div class="glass-card">
-          <h2 style="margin-bottom: 16px;">🤖 Local Model Manager</h2>
+          <h2 style="margin-bottom: 16px;" data-i18n="models_header">🤖 Local Model Manager</h2>
           <div style="margin-bottom: 32px;">
-            <h3 style="font-size: 16px; margin-bottom: 12px;">📥 Pull New Model</h3>
+            <h3 style="font-size: 16px; margin-bottom: 12px;" data-i18n="models_pull_title">📥 Pull New Model</h3>
             <div class="flex" style="gap: 12px;">
               <select id="txtTargetModel" style="flex: 1;">
                 <option value="gemma2:2b">Gemma 2 2B (Lightweight, 1.6GB)</option>
@@ -233,7 +242,7 @@
                 <option value="gemma2:27b">Gemma 2 27B (Large, 16GB)</option>
                 <option value="qwen3:32b">Qwen 3 32B (Advanced Logic, 20GB)</option>
               </select>
-              <button class="btn" id="btnPull" onclick="pullOllamaModel()">Pull</button>
+              <button class="btn" id="btnPull" onclick="pullOllamaModel()" data-i18n="models_btn_pull">Pull</button>
             </div>
             <div id="pullProgressContainer" style="margin-top: 16px; display: none;">
               <div class="flex justify-between" style="font-size: 12px; margin-bottom: 6px;">
@@ -247,7 +256,7 @@
           </div>
 
           <div>
-            <h3 style="font-size: 16px; margin-bottom: 12px;">📦 Installed Models</h3>
+            <h3 style="font-size: 16px; margin-bottom: 12px;" data-i18n="models_list_title">📦 Installed Models</h3>
             <div id="installedModelsList" style="display: flex; flex-direction: column; gap: 8px;">
               <!-- Model items loaded dynamically -->
             </div>
@@ -261,57 +270,352 @@
   <!-- Setup Wizard Modal Overlay -->
   <div class="modal-overlay" id="wizardOverlay">
     <div class="wizard-card" id="wizardStep1">
-      <h2 style="margin-bottom: 16px; font-size: 22px;">🔒 Setup Wizard & Privacy Scan</h2>
-      <p style="color: var(--text-secondary); margin-bottom: 24px; line-height: 1.6; font-size: 14px;">
+      <h2 style="margin-bottom: 16px; font-size: 22px;" data-i18n="wiz1_title">🔒 Setup Wizard & Privacy Scan</h2>
+      <p style="color: var(--text-secondary); margin-bottom: 24px; line-height: 1.6; font-size: 14px;" data-i18n="wiz1_desc">
         Before launching NALA Career-Ops, we would like to scan your system specifications (CPU, RAM, free disk space, and open ports) to configure local LLM parameters automatically and ensure zero port conflicts.
       </p>
       <div class="flex" style="gap: 12px;">
-        <button class="btn" onclick="executeHardwareScan()">Agree & Scan System</button>
-        <button class="btn btn-secondary" onclick="skipHardwareScan()">Skip, Manual Setup</button>
+        <button class="btn" onclick="executeHardwareScan()" data-i18n="wiz1_btn_scan">Agree & Scan System</button>
+        <button class="btn btn-secondary" onclick="skipHardwareScan()" data-i18n="wiz1_btn_skip">Skip, Manual Setup</button>
       </div>
     </div>
 
     <div class="wizard-card" id="wizardStep2" style="display: none;">
-      <h2 style="margin-bottom: 16px; font-size: 20px;">💻 Hardware & Service Check</h2>
+      <h2 style="margin-bottom: 16px; font-size: 20px;" data-i18n="wiz2_title">💻 Hardware & Service Check</h2>
       <div id="scannerStatsBox" style="margin-bottom: 20px; padding: 16px; background: rgba(255,255,255,0.03); border-radius: 8px; font-size: 14px;">
         <!-- Stats loaded here -->
       </div>
       <div class="glass-card" style="padding: 16px; margin-bottom: 24px;" id="ollamaStatusBox">
-        <h3 style="font-size: 16px; margin-bottom: 8px;">⚙️ Ollama Status</h3>
-        <p style="color: var(--accent-color); font-size: 14px;" id="txtOllamaStatus">
+        <h3 style="font-size: 16px; margin-bottom: 8px;" data-i18n="wiz2_ollama_title">⚙️ Ollama Status</h3>
+        <p style="color: var(--accent-color); font-size: 14px;" id="txtOllamaStatus" data-i18n="wiz2_ollama_ok">
           ✅ Ollama detected on port 11434. Bypassing install.
         </p>
       </div>
       <div style="margin-bottom: 24px;">
-        <h3 style="font-size: 16px; margin-bottom: 8px;">💡 Model Recommendation</h3>
-        <p style="font-size: 14px;">Based on the memory configuration, we recommend installing:</p>
+        <h3 style="font-size: 16px; margin-bottom: 8px;" data-i18n="wiz2_rec_title">💡 Model Recommendation</h3>
+        <p style="font-size: 14px;" data-i18n="wiz2_rec_desc">Based on the memory configuration, we recommend installing:</p>
         <div style="margin: 12px 0; padding: 12px; background: var(--accent-glow); border-left: 4px solid var(--accent-color); border-radius: 4px;">
           <strong id="recModelName">gemma2:9b</strong>
           <div style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;" id="recModelDesc">Standard choice. Offers excellent target-fit analysis.</div>
         </div>
       </div>
       <div class="flex" style="gap: 12px;">
-        <button class="btn" onclick="showWizardStep3()">Continue Setup</button>
+        <button class="btn" onclick="showWizardStep3()" data-i18n="wiz_btn_continue">Continue Setup</button>
       </div>
     </div>
 
     <div class="wizard-card" id="wizardStep3" style="display: none;">
-      <h2 style="margin-bottom: 16px; font-size: 20px;">Hugging Face Setup</h2>
-      <p style="color: var(--text-secondary); margin-bottom: 20px; font-size: 14px; line-height: 1.5;">
+      <h2 style="margin-bottom: 16px; font-size: 20px;" data-i18n="wiz3_title">Hugging Face Setup</h2>
+      <p style="color: var(--text-secondary); margin-bottom: 20px; font-size: 14px; line-height: 1.5;" data-i18n="wiz3_desc">
         Some advanced models (like the Gemma family) are gated on Hugging Face. Paste your Hugging Face API Key below to pull models directly to your Ollama manager.
       </p>
       <div style="margin-bottom: 24px;">
-        <label style="font-size: 13px; color: var(--text-secondary); display: block; margin-bottom: 6px;">Hugging Face User Access Token</label>
+        <label style="font-size: 13px; color: var(--text-secondary); display: block; margin-bottom: 6px;" data-i18n="hf_token_lbl">Hugging Face User Access Token</label>
         <input type="password" id="wizardHfToken" placeholder="hf_...">
       </div>
       <div class="flex" style="gap: 12px;">
-        <button class="btn" onclick="completeOnboarding(true)">Complete Onboarding</button>
-        <button class="btn btn-secondary" onclick="completeOnboarding(false)">Skip Token Setup</button>
+        <button class="btn" onclick="completeOnboarding(true)" data-i18n="wiz_btn_complete">Complete Onboarding</button>
+        <button class="btn btn-secondary" onclick="completeOnboarding(false)" data-i18n="wiz_btn_skip_token">Skip Token Setup</button>
       </div>
     </div>
   </div>
 
   <script>
+    // Locales definitions
+    const locales = {
+      en: {
+        app_title: "NALA CV-Tuner",
+        nav_tuner: "🎯 Workspace / Tuner",
+        nav_inbox: "📥 Paperless Inbox",
+        nav_photo: "🖼️ Photo Assistant",
+        nav_models: "🤖 LLM Model Manager",
+        nav_lang: "Language / Sprache",
+        nav_adhd: "ADHD Focus Mode",
+        theme_light: "☀️ Light",
+        theme_dark: "🌙 Dark",
+        theme_alert: "🚨 Alert",
+        tuner_header: "🎯 Career-Ops Workspace",
+        tuner_sub: "Optimize your CV and analyze job descriptions side-by-side.",
+        tpl_dense: "Tech-Dense Template",
+        tpl_classic: "Classic Template",
+        tpl_minimal: "Minimal Template",
+        tpl_modern: "Modern Template",
+        layout_full: "📋 Full",
+        layout_split: "⚖️ Split",
+        layout_report: "📊 Report",
+        cv_pane_title: "📝 Curriculum Vitae (Markdown)",
+        btn_baseline: "⚡ Generic Baseline CV",
+        jd_pane_title: "💼 Target Job Listing (Paste JD or URL)",
+        btn_optimize: "🧬 Optimize CV for this Job",
+        report_pane_title: "📊 Analysis & HR Feedback",
+        report_default: "Run the CV optimization to trigger the HR Debate swarm feedback.",
+        inbox_header: "Inbox & Documents",
+        inbox_sub: "Drag and drop files to categorize and save them to the local MemPalace database.",
+        inbox_drop: "Drag & Drop your documents here",
+        inbox_drop_sub: "Supports PDF, DOCX, TXT, HTML, RTF, and EML (processed securely via local Docling engine)",
+        inbox_list_title: "Parsed Documents",
+        photo_header: "🖼️ AI Profile Photo Tuner",
+        photo_sub: "Optimize your portrait using ComfyUI workflows for a polished, professional profile image.",
+        photo_none: "No photo loaded",
+        photo_running: "Running ComfyUI workflow...",
+        photo_btn_upload: "📷 Upload Selfie / Portrait",
+        photo_style: "Style Template",
+        photo_style_founder: "Tech Founder (Dynamic light, warm colors)",
+        photo_style_corp: "Corporate Navy (Clean background, cool light)",
+        photo_style_gray: "Studio Gray (Soft shadow, black suit)",
+        photo_bg_replace: "Remove and replace background",
+        photo_btn_run: "✨ Run Optimization",
+        hf_header: "🤗 Hugging Face Integration",
+        hf_sub: "Connect your Hugging Face account to download gated models directly.",
+        hf_token_lbl: "Hugging Face Token",
+        hf_btn_save: "Save Key",
+        models_header: "🤖 Local Model Manager",
+        models_pull_title: "📥 Pull New Model",
+        models_btn_pull: "Pull",
+        models_list_title: "📦 Installed Models",
+        wiz1_title: "🔒 Setup Wizard & Privacy Scan",
+        wiz1_desc: "Before launching NALA Career-Ops, we would like to scan your system specifications (CPU, RAM, free disk space, and open ports) to configure local LLM parameters automatically and ensure zero port conflicts.",
+        wiz1_btn_scan: "Agree & Scan System",
+        wiz1_btn_skip: "Skip, Manual Setup",
+        wiz2_title: "💻 Hardware & Service Check",
+        wiz2_ollama_title: "⚙️ Ollama Status",
+        wiz2_ollama_ok: "✅ Ollama detected on port 11434. Bypassing install.",
+        wiz2_rec_title: "💡 Model Recommendation",
+        wiz2_rec_desc: "Based on the memory configuration, we recommend installing:",
+        wiz_btn_continue: "Continue Setup",
+        wiz3_title: "Hugging Face Setup",
+        wiz3_desc: "Some advanced models (like the Gemma family) are gated on Hugging Face. Paste your Hugging Face API Key below to pull models directly to your Ollama manager.",
+        wiz_btn_complete: "Complete Onboarding",
+        wiz_btn_skip_token: "Skip Token Setup"
+      },
+      de: {
+        app_title: "NALA CV-Tuner",
+        nav_tuner: "🎯 Arbeitsbereich / Tuner",
+        nav_inbox: "📥 Dokumenten-Inbox",
+        nav_photo: "🖼️ Foto-Assistent",
+        nav_models: "🤖 LLM Modell-Manager",
+        nav_lang: "Sprache / Language",
+        nav_adhd: "ADHD Fokus-Modus",
+        theme_light: "☀️ Hell",
+        theme_dark: "🌙 Dunkel",
+        theme_alert: "🚨 Alarm",
+        tuner_header: "🎯 Arbeitsbereich",
+        tuner_sub: "Optimieren Sie Ihren Lebenslauf und analysieren Sie Stellenanzeigen.",
+        tpl_dense: "Tech-Dense Vorlage",
+        tpl_classic: "Klassische Vorlage",
+        tpl_minimal: "Minimale Vorlage",
+        tpl_modern: "Moderne Vorlage",
+        layout_full: "📋 Voll",
+        layout_split: "⚖️ Geteilt",
+        layout_report: "📊 Bericht",
+        cv_pane_title: "📝 Lebenslauf (Markdown)",
+        btn_baseline: "⚡ Basis-Lebenslauf",
+        jd_pane_title: "💼 Stellenanzeige (Text oder URL)",
+        btn_optimize: "🧬 Für diese Stelle optimieren",
+        report_pane_title: "📊 Analyse & Feedback",
+        report_default: "Führen Sie das CV-Tuning aus, um das HR-Agenten-Feedback zu sehen.",
+        inbox_header: "Posteingang & Dokumente",
+        inbox_sub: "Bewerbungsunterlagen ablegen, klassifizieren und in MemPalace sichern.",
+        inbox_drop: "Dokumente hier hineinziehen",
+        inbox_drop_sub: "Unterstützt PDF, DOCX, TXT, HTML, RTF und EML (verarbeitet mit der lokalen Docling-Engine)",
+        inbox_list_title: "Verarbeitete Dokumente",
+        photo_header: "🖼️ Profilbild Optimierer",
+        photo_sub: "Optimieren Sie Ihr Porträt mit ComfyUI für ein professionelles Bewerbungsbild.",
+        photo_none: "Kein Foto geladen",
+        photo_running: "ComfyUI-Prozess läuft...",
+        photo_btn_upload: "📷 Foto hochladen",
+        photo_style: "Stilvorlage",
+        photo_style_founder: "Gründer-Stil (Dynamisches, warmes Licht)",
+        photo_style_corp: "Corporate Blau (Blauer Studiohintergrund)",
+        photo_style_gray: "Studio Grau (Klassisches Grau, schwarzer Anzug)",
+        photo_bg_replace: "Hintergrund ersetzen",
+        photo_btn_run: "✨ Bild optimieren",
+        hf_header: "🤗 Hugging Face Anbindung",
+        hf_sub: "Geben Sie Ihren API-Schlüssel ein, um zugriffsgeschützte Modelle direkt zu laden.",
+        hf_token_lbl: "Hugging Face API-Key",
+        hf_btn_save: "Schlüssel sichern",
+        models_header: "🤖 Lokaler Modell-Manager",
+        models_pull_title: "📥 Neues Modell laden",
+        models_btn_pull: "Laden",
+        models_list_title: "📦 Installierte Modelle",
+        wiz1_title: "🔒 Installationsassistent & Datenschutz",
+        wiz1_desc: "Vor dem Start von NALA scannen wir auf Wunsch Ihre Hardware (CPU, RAM, Speicherplatz und Ports), um lokale Modelle optimal zuzuweisen und Portkonflikte zu vermeiden.",
+        wiz1_btn_scan: "System scannen",
+        wiz1_btn_skip: "Manuell einrichten",
+        wiz2_title: "💻 Hardware- und Portprüfung",
+        wiz2_ollama_title: "⚙️ Ollama Status",
+        wiz2_ollama_ok: "✅ Ollama auf Port 11434 erkannt. Keine Neuinstallation nötig.",
+        wiz2_rec_title: "💡 Modell-Empfehlung",
+        wiz2_rec_desc: "Aufgrund Ihres Arbeitsspeichers empfehlen wir dieses Modell:",
+        wiz_btn_continue: "Weiter",
+        wiz3_title: "Hugging Face Verbindung",
+        wiz3_desc: "Manche GGUF-Modelle (wie Gemma) benötigen eine Freigabe über Hugging Face. Hinterlegen Sie Ihren Token, um diese direkt herunterzuladen.",
+        wiz_btn_complete: "Einrichtung abschließen",
+        wiz_btn_skip_token: "Überspringen"
+      },
+      fr: {
+        app_title: "NALA CV-Tuner",
+        nav_tuner: "🎯 Espace de Travail",
+        nav_inbox: "📥 Boîte de Réception",
+        nav_photo: "🖼️ Assistant Photo",
+        nav_models: "🤖 Gestionnaire de Modèles",
+        nav_lang: "Langue / Language",
+        nav_adhd: "Mode Focus TDAH",
+        theme_light: "☀️ Clair",
+        theme_dark: "🌙 Sombre",
+        theme_alert: "🚨 Alerte",
+        tuner_header: "🎯 Espace de Travail",
+        tuner_sub: "Optimisez votre CV et analysez les offres d'emploi côte à côte.",
+        tpl_dense: "Modèle Tech-Dense",
+        tpl_classic: "Modèle Classique",
+        tpl_minimal: "Modèle Minimal",
+        tpl_modern: "Modèle Moderne",
+        layout_full: "📋 Complet",
+        layout_split: "⚖️ Partagé",
+        layout_report: "📊 Rapport",
+        cv_pane_title: "📝 Curriculum Vitae (Markdown)",
+        btn_baseline: "⚡ CV de Base Générique",
+        jd_pane_title: "💼 Offre d'emploi (Texte ou URL)",
+        btn_optimize: "🧬 Optimiser pour ce poste",
+        report_pane_title: "📊 Analyse et retours RH",
+        report_default: "Exécutez l'optimisation pour voir les retours RH.",
+        inbox_header: "Boîte de réception",
+        inbox_sub: "Glissez vos documents pour les indexer dans la base locale MemPalace.",
+        inbox_drop: "Déposer vos documents ici",
+        inbox_drop_sub: "Supporte PDF, DOCX, TXT, HTML, RTF et EML (traité par Docling)",
+        inbox_list_title: "Documents importés",
+        photo_header: "🖼️ Optimiseur de Photo de Profil",
+        photo_sub: "Améliorez votre portrait avec ComfyUI pour un rendu professionnel.",
+        photo_none: "Aucune photo chargée",
+        photo_running: "Workflow ComfyUI en cours...",
+        photo_btn_upload: "📷 Charger une photo",
+        photo_style: "Modèle de style",
+        photo_style_founder: "Tech Founder (Éclairage chaleureux)",
+        photo_style_corp: "Corporate Navy (Hintergrund bleu corporate)",
+        photo_style_gray: "Studio Gris (Costume noir, fond gris)",
+        photo_bg_replace: "Remplacer le fond d'écran",
+        photo_btn_run: "✨ Optimiser l'image",
+        hf_header: "🤗 Intégration Hugging Face",
+        hf_sub: "Entrez votre clé API pour télécharger les modèles protégés.",
+        hf_token_lbl: "Clé API Hugging Face",
+        hf_btn_save: "Sauvegarder",
+        models_header: "🤖 Gestionnaire Local",
+        models_pull_title: "📥 Télécharger un modèle",
+        models_btn_pull: "Télécharger",
+        models_list_title: "📦 Modèles Installés",
+        wiz1_title: "🔒 Assistant d'installation & Confidentialité",
+        wiz1_desc: "Avant de lancer NALA, nous analysons vos spécifications système pour attribuer les modèles optimaux et éviter les conflits.",
+        wiz1_btn_scan: "Analyser le système",
+        wiz1_btn_skip: "Configuration manuelle",
+        wiz2_title: "💻 Vérification Matériel et Ports",
+        wiz2_ollama_title: "⚙️ Statut Ollama",
+        wiz2_ollama_ok: "✅ Ollama détecté sur le port 11434. Installation ignorée.",
+        wiz2_rec_title: "💡 Modèle recommandé",
+        wiz2_rec_desc: "Basé sur votre configuration mémoire, nous recommandons :",
+        wiz_btn_continue: "Continuer",
+        wiz3_title: "Configuration Hugging Face",
+        wiz3_desc: "Certains modèles GGUF nécessitent une autorisation Hugging Face. Fournissez votre clé pour les importer.",
+        wiz_btn_complete: "Terminer",
+        wiz_btn_skip_token: "Ignorer"
+      },
+      it: {
+        app_title: "NALA CV-Tuner",
+        nav_tuner: "🎯 Area di Lavoro",
+        nav_inbox: "📥 Casella Postale",
+        nav_photo: "🖼️ Assistente Foto",
+        nav_models: "🤖 Gestione Modelli",
+        nav_lang: "Lingua / Language",
+        nav_adhd: "Modalità ADHD Focus",
+        theme_light: "☀️ Chiaro",
+        theme_dark: "🌙 Scuro",
+        theme_alert: "🚨 Allarme",
+        tuner_header: "🎯 Area di Lavoro",
+        tuner_sub: "Ottimizza il tuo CV e analizza l'offerta di lavoro affiancati.",
+        tpl_dense: "Modello Tech-Dense",
+        tpl_classic: "Modello Classico",
+        tpl_minimal: "Modello Minimo",
+        tpl_modern: "Modello Moderno",
+        layout_full: "📋 Intero",
+        layout_split: "⚖️ Diviso",
+        layout_report: "📊 Report",
+        cv_pane_title: "📝 Curriculum Vitae (Markdown)",
+        btn_baseline: "⚡ CV Generico di Base",
+        jd_pane_title: "💼 Offerta di Lavoro (Testo o URL)",
+        btn_optimize: "🧬 Ottimizza per questo lavoro",
+        report_pane_title: "📊 Analisi e Feedback Risorse Umane",
+        report_default: "Esegui l'ottimizzazione per vedere i feedback delle risorse umane.",
+        inbox_header: "Casella postale e documenti",
+        inbox_sub: "Trascina i file per catalogarli nel database locale MemPalace.",
+        inbox_drop: "Trascina qui i tuoi documenti",
+        inbox_drop_sub: "Supporta PDF, DOCX, TXT, HTML, RTF ed EML (elaborati con Docling)",
+        inbox_list_title: "Documenti caricati",
+        photo_header: "🖼️ Ottimizzatore Foto Profilo",
+        photo_sub: "Migliora il tuo ritratto con ComfyUI per un profilo professionale.",
+        photo_none: "Nessuna foto caricata",
+        photo_running: "Elaborazione workflow ComfyUI...",
+        photo_btn_upload: "📷 Carica una foto",
+        photo_style: "Stile ritratto",
+        photo_style_founder: "Tech Founder (Luce calda e dinamica)",
+        photo_style_corp: "Corporate Navy (Sfondo studio blu)",
+        photo_style_gray: "Studio Grigio (Giacca nera, sfondo grigio)",
+        photo_bg_replace: "Remplaza lo sfondo",
+        photo_btn_run: "✨ Ottimizza ritratto",
+        hf_header: "🤗 Integrazione Hugging Face",
+        hf_sub: "Fornisci il token API per scaricare i modelli protetti.",
+        hf_token_lbl: "Token Hugging Face API",
+        hf_btn_save: "Salva Chiave",
+        models_header: "🤖 Gestore Modelli Locale",
+        models_pull_title: "📥 Scarica Modello",
+        models_btn_pull: "Scarica",
+        models_list_title: "📦 Modelli Installati",
+        wiz1_title: "🔒 Installazione guidata e Privacy",
+        wiz1_desc: "Prima di avviare NALA, eseguiamo una scansione per rilevare le specifiche hardware ed evitare conflitti.",
+        wiz1_btn_scan: "Scansiona sistema",
+        wiz1_btn_skip: "Configura manualmente",
+        wiz2_title: "💻 Verifica Hardware e Porte",
+        wiz2_ollama_title: "⚙️ Stato Ollama",
+        wiz2_ollama_ok: "✅ Ollama rilevato sulla porta 11434. Installazione ignorata.",
+        wiz2_rec_title: "💡 Modello raccomandato",
+        wiz2_rec_desc: "In base alla memoria rilevata, ti consigliamo :",
+        wiz_btn_continue: "Continua",
+        wiz3_title: "Configurazione Hugging Face",
+        wiz3_desc: "Alcuni modelli GGUF richiedono l'autenticazione. Fornisci il token per scaricarli direttamente.",
+        wiz_btn_complete: "Completa configurazione",
+        wiz_btn_skip_token: "Ignora"
+      }
+    };
+
+    let currentLanguage = 'en';
+
+    function changeLanguage(lang) {
+      currentLanguage = lang;
+      document.getElementById('langSelector').value = lang;
+      
+      // Select all elements with data-i18n attribute and translate
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (locales[lang] && locales[lang][key]) {
+          el.innerText = locales[lang][key];
+        }
+      });
+      
+      // Update placeholders
+      const cvText = document.getElementById('cvText');
+      if (cvText && cvText.placeholder) {
+        cvText.placeholder = lang === 'de' ? 'Lebenslauf schreiben...' : lang === 'fr' ? 'Écrire un CV...' : lang === 'it' ? 'Scrivere un CV...' : 'Writing sample...';
+      }
+    }
+
+    // Auto-detect language on startup
+    window.addEventListener('DOMContentLoaded', () => {
+      const systemLang = navigator.language.split('-')[0];
+      if (['en', 'de', 'fr', 'it'].includes(systemLang)) {
+        changeLanguage(systemLang);
+      } else {
+        changeLanguage('en');
+      }
+    });
+
     // Tab switching logic
     function switchTab(tabName) {
       document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
@@ -373,18 +677,42 @@
       document.getElementById('wizardStep1').style.display = 'none';
       document.getElementById('wizardStep2').style.display = 'block';
       
-      // Load simulated details (as scanning is runtime)
       const statsBox = document.getElementById('scannerStatsBox');
-      statsBox.innerHTML = `
-        <div style="margin-bottom: 8px;">🖥️ <strong>Platform:</strong> win32 (Windows 11)</div>
-        <div style="margin-bottom: 8px;">🧠 <strong>CPU:</strong> AMD Ryzen 9 7900X (12 cores)</div>
-        <div style="margin-bottom: 8px;">💾 <strong>RAM:</strong> 32 GB RAM</div>
-        <div>💾 <strong>Free Disk Space:</strong> 180 GB available</div>
-      `;
+      const lang = currentLanguage;
+      
+      if (lang === 'de') {
+        statsBox.innerHTML = `
+          <div style="margin-bottom: 8px;">🖥️ <strong>Plattform:</strong> win32 (Windows 11)</div>
+          <div style="margin-bottom: 8px;">🧠 <strong>CPU:</strong> AMD Ryzen 9 7900X (12 Kerne)</div>
+          <div style="margin-bottom: 8px;">💾 <strong>RAM:</strong> 32 GB RAM</div>
+          <div>💾 <strong>Speicherplatz:</strong> 180 GB verbleibend</div>
+        `;
+      } else if (lang === 'fr') {
+        statsBox.innerHTML = `
+          <div style="margin-bottom: 8px;">🖥️ <strong>Plateforme:</strong> win32 (Windows 11)</div>
+          <div style="margin-bottom: 8px;">🧠 <strong>CPU:</strong> AMD Ryzen 9 7900X (12 cœurs)</div>
+          <div style="margin-bottom: 8px;">💾 <strong>RAM:</strong> 32 Go RAM</div>
+          <div>💾 <strong>Stockage:</strong> 180 Go libres</div>
+        `;
+      } else if (lang === 'it') {
+        statsBox.innerHTML = `
+          <div style="margin-bottom: 8px;">🖥️ <strong>Piattaforma:</strong> win32 (Windows 11)</div>
+          <div style="margin-bottom: 8px;">🧠 <strong>CPU:</strong> AMD Ryzen 9 7900X (12 core)</div>
+          <div style="margin-bottom: 8px;">💾 <strong>RAM:</strong> 32 GB RAM</div>
+          <div>💾 <strong>Spazio Disco:</strong> 180 GB disponibili</div>
+        `;
+      } else {
+        statsBox.innerHTML = `
+          <div style="margin-bottom: 8px;">🖥️ <strong>Platform:</strong> win32 (Windows 11)</div>
+          <div style="margin-bottom: 8px;">🧠 <strong>CPU:</strong> AMD Ryzen 9 7900X (12 cores)</div>
+          <div style="margin-bottom: 8px;">💾 <strong>RAM:</strong> 32 GB RAM</div>
+          <div>💾 <strong>Free Disk Space:</strong> 180 GB available</div>
+        `;
+      }
       
       // Recommend Gemma 4 based on 32GB RAM
       document.getElementById('recModelName').innerText = 'gemma:12b (Gemma 4)';
-      document.getElementById('recModelDesc').innerText = 'Advanced capability. Optimized footprint for 32GB RAM.';
+      document.getElementById('recModelDesc').innerText = lang === 'de' ? 'Fortgeschrittene Auswertung. Optimiert für 32GB RAM.' : lang === 'fr' ? 'Modèle avancé. Optimisé pour 32 Go de RAM.' : lang === 'it' ? 'Prestazioni avanzate. Ottimizzato per 32 GB RAM.' : 'Advanced capability. Optimized footprint for 32GB RAM.';
     }
 
     function skipHardwareScan() {
@@ -392,10 +720,12 @@
       document.getElementById('wizardStep2').style.display = 'block';
       
       const statsBox = document.getElementById('scannerStatsBox');
-      statsBox.innerHTML = `<p style="color: var(--text-secondary);">Auto-scan skipped. Defaulting configurations.</p>`;
+      const lang = currentLanguage;
+      
+      statsBox.innerHTML = `<p style="color: var(--text-secondary);">${lang === 'de' ? 'Scan übersprungen. Standardwerte geladen.' : lang === 'fr' ? 'Scan ignoré. Valeurs par défaut chargées.' : lang === 'it' ? 'Scansione ignorata. Caricamento valori di default.' : 'Auto-scan skipped. Defaulting configurations.'}</p>`;
       
       document.getElementById('recModelName').innerText = 'gemma2:9b';
-      document.getElementById('recModelDesc').innerText = 'Standard choice. Works on most modern desktops.';
+      document.getElementById('recModelDesc').innerText = lang === 'de' ? 'Standardauswahl. Läuft auf den meisten Computern.' : lang === 'fr' ? 'Choix standard. Fonctionne sur la plupart des ordinateurs.' : lang === 'it' ? 'Scelta standard. Funziona sulla maggior parte dei computer.' : 'Standard choice. Works on most modern desktops.';
     }
 
     function showWizardStep3() {
@@ -411,8 +741,8 @@
       document.getElementById('wizardOverlay').style.display = 'none';
       
       // Load standard defaults
-      document.getElementById('cvText').value = `# Jane Doe\\nLead Software Engineer\\nZurich, Switzerland\\n\\nSummary: Specialized in high-performance AI agent execution and local LLM routing.\\nExperience:\\n- Lead Engineer at MockTech AG (2024 - Present)\\n- Software Engineer at DevCorp (2021 - 2024)`;
-      document.getElementById('jdText').value = `Title: Senior AI Application Engineer\\nCompany: FutureTech Labs\\nLocation: Zurich (Hybrid)\\n\\nKey Requirements:\\n- Deep experience running local LLMs (Ollama, LM Studio)\\n- Strong Node.js, TypeScript, and Go background\\n- Experience building AI agent swarms`;
+      document.getElementById('cvText').value = `# Jane Doe\nLead Software Engineer\nZurich, Switzerland\n\nSummary: Specialized in high-performance AI agent execution and local LLM routing.\nExperience:\n- Lead Engineer at MockTech AG (2024 - Present)\n- Software Engineer at DevCorp (2021 - 2024)`;
+      document.getElementById('jdText').value = `Title: Senior AI Application Engineer\nCompany: FutureTech Labs\nLocation: Zurich (Hybrid)\n\nKey Requirements:\n- Deep experience running local LLMs (Ollama, LM Studio)\n- Strong Node.js, TypeScript, and Go background\n- Experience building AI agent swarms`;
       
       loadFiles();
       loadInstalledModels();
@@ -426,6 +756,7 @@
       const percentText = document.getElementById('txtPullPercent');
       const bar = document.getElementById('barPullProgress');
       const btn = document.getElementById('btnPull');
+      const lang = currentLanguage;
       
       btn.disabled = true;
       progressContainer.style.display = 'block';
@@ -438,14 +769,14 @@
         if (percent >= 100) {
           percent = 100;
           clearInterval(interval);
-          status.innerText = 'Manifest verification complete!';
+          status.innerText = lang === 'de' ? 'Modell erfolgreich geladen!' : lang === 'fr' ? 'Modèle téléchargé avec succès!' : lang === 'it' ? 'Modello caricato con successo!' : 'Manifest verification complete!';
           percentText.innerText = '100%';
           bar.style.width = '100%';
           btn.disabled = false;
           
           addInstalledModel(model);
         } else {
-          status.innerText = 'Downloading layers...';
+          status.innerText = lang === 'de' ? 'Modellschichten werden geladen...' : lang === 'fr' ? 'Téléchargement des couches...' : lang === 'it' ? 'Scaricamento strati...' : 'Downloading layers...';
           percentText.innerText = percent + '%';
           bar.style.width = percent + '%';
         }
@@ -498,6 +829,7 @@
       e.preventDefault();
       document.getElementById('dropZone').classList.remove('active');
       const files = Array.from(e.dataTransfer.files);
+      const lang = currentLanguage;
       if (files.length > 0) {
         const list = document.getElementById('fileList');
         files.forEach(f => {
@@ -510,7 +842,7 @@
               <span style="color: var(--text-muted); font-size: 12px;">(${(f.size / 1024).toFixed(0)} KB)</span>
             </div>
             <div class="flex items-center" style="gap: 12px;">
-              <span style="font-size: 12px; color: #f59e0b;">🧠 Analyzing...</span>
+              <span style="font-size: 12px; color: #f59e0b;">${lang === 'de' ? 'Analysieren...' : lang === 'fr' ? 'Analyse...' : lang === 'it' ? 'Analisi...' : '🧠 Analyzing...'}</span>
               <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" onclick="this.parentElement.parentElement.remove()">Delete</button>
             </div>
           `;
@@ -539,33 +871,62 @@
 
     function runComfyPhoto() {
       const overlay = document.getElementById('comfyOverlay');
+      const lang = currentLanguage;
       overlay.style.display = 'flex';
       setTimeout(() => {
         overlay.style.display = 'none';
-        alert('Professional corporate portrait generated and optimized!');
+        alert(lang === 'de' ? 'Professionelles Bild wurde generiert!' : lang === 'fr' ? 'Photo professionnelle générée!' : lang === 'it' ? 'Foto professionale generata!' : 'Professional corporate portrait generated and optimized!');
       }, 2000);
     }
 
     // CV Tuning actions
     function triggerBaseline() {
       const txt = document.getElementById('cvText');
-      txt.value = txt.value + "\\n\\n### Key Projects\\n- Local LLM Router (Gemma/Qwen integration)\\n- Multi-Agent HR Simulation Pipeline\\n\\n### Technical Skills\\nOllama, Node.js, Go, TypeScript, PyTorch, Docker";
-      alert('Generic baseline CV generated! Check the Markdown contents.');
+      const lang = currentLanguage;
+      txt.value = txt.value + "\n\n### Key Projects\n- Local LLM Router (Gemma/Qwen integration)\n- Multi-Agent HR Simulation Pipeline\n\n### Technical Skills\nOllama, Node.js, Go, TypeScript, PyTorch, Docker";
+      alert(lang === 'de' ? 'Basis-Lebenslauf generiert!' : lang === 'fr' ? 'CV de base générique généré!' : lang === 'it' ? 'CV generico generato!' : 'Generic baseline CV generated! Check the Markdown contents.');
     }
 
     function triggerOptimize() {
       const reportText = document.getElementById('reportText');
-      reportText.innerText = "Running multi-agent analysis...\\n";
+      const lang = currentLanguage;
+      reportText.innerText = lang === 'de' ? 'Analysiere...' : lang === 'fr' ? 'Analyse...' : lang === 'it' ? 'Analisi...' : 'Running multi-agent analysis...\n';
       
       setTimeout(() => {
-        reportText.innerText = `### HR Agent Simulation Report
+        if (lang === 'de') {
+          reportText.innerText = `### HR-Agenten Simulations-Bericht
+-----------------------------------------
+- **ATS Scanner Score:** 94% Übereinstimmung (A-Tier Kandidat)
+- **Recruiter Feedback:** Das Profil passt hervorragend zur Bereitstellung lokaler LLMs und Node/Go-Swarms.
+- **Hiring Committee Simulation:** Für das technische Interview freigegeben.
+- **STAR-Story Match:** Das "Local LLM Router" Projekt wird als Hauptargument empfohlen.
+- **Optimierter Lebenslauf generiert:** Bereit für den PDF-Export.`;
+        } else if (lang === 'fr') {
+          reportText.innerText = `### Rapport de Simulation RH
+-----------------------------------------
+- **ATS Matcher Score:** 92% (Candidat de premier rang / A-Tier)
+- **Retours Recruteur:** Profil parfaitement adapté aux exigences des modèles locaux et des architectures Node/Go.
+- **Hiring Committee Simulation:** Candidat validé pour l'entretien technique immédiat.
+- **STAR Story Match:** Projet de routeur LLM local recommandé comme principal sujet de discussion.
+- **CV personnalisé généré:** Disponible pour exportation PDF.`;
+        } else if (lang === 'it') {
+          reportText.innerText = `### Report di Simulazione Risorse Umane
+-----------------------------------------
+- **ATS Matcher Score:** 92% (Candidato A-Tier)
+- **Feedback Recruiter:** Profilo altamente allineato per distribuzioni locali di LLM e swarms Node/Go.
+- **Hiring Committee Simulation:** Approvato per immediato colloquio tecnico.
+- **STAR Story Match:** Progetto Local LLM Router raccomandato per il colloquio.
+- **CV ottimizzato generato:** Pronto per l'esportazione PDF.`;
+        } else {
+          reportText.innerText = `### HR Agent Simulation Report
 -----------------------------------------
 - **ATS Matcher Score:** 94% Match (A-Tier Candidate)
 - **Recruiter Feedback:** Profile aligns exceptionally well with local LLM deployment and Node/Go swarms.
 - **Hiring Committee Simulation:** Approved for immediate technical screening.
 - ** STAR Story Matches:** Highlighted Local LLM Router project as top talking point.
 - **Tailored CV generated:** Prepared and ready for PDF export.`;
-        alert('Optimization and HR Simulation debate completed!');
+        }
+        alert(lang === 'de' ? 'Optimierung und HR-Debatte abgeschlossen!' : lang === 'fr' ? 'Optimisation et simulation RH terminées!' : lang === 'it' ? 'Ottimizzazione e simulazione completate!' : 'Optimization and HR Simulation debate completed!');
         setLayout('dense');
       }, 1500);
     }
@@ -573,7 +934,8 @@
     function saveHfToken() {
       const token = document.getElementById('txtHfToken').value;
       localStorage.setItem('hf_token', token);
-      alert('Token saved successfully!');
+      const lang = currentLanguage;
+      alert(lang === 'de' ? 'Hugging Face Token erfolgreich gespeichert!' : lang === 'fr' ? 'Clé Hugging Face enregistrée avec succès!' : lang === 'it' ? 'Token Hugging Face salvato con successo!' : 'Hugging Face token saved successfully!');
     }
   </script>
 </body>
